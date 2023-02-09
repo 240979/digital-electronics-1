@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Lab 1: INSERT_YOUR_FIRSTNAME INSERT_YOUR_LASTNAME
 
 ### De Morgan's laws
@@ -76,3 +77,14 @@ end architecture dataflow;
 2. Link to your public EDA Playground example:
 
    [https://www.edaplayground.com/...](https://www.edaplayground.com/...)
+=======
+# digital-electronics-1
+**Bold** __Bold__ *italic* _italic_ 
+## List:
+1. First
+2. Second
+
+
+
+![This is an image](https://myoctocat.com/assets/images/base-octocat.svg)
+>>>>>>> e70408495496ef204536975582987659a2c1ed5f
