@@ -6,5 +6,5 @@
 3. Third
 
 
-![This is an image](https://myoctocat.com/assets/images/base-octocat.svg)
->>>>>>> e70408495496ef204536975582987659a2c1ed5f
+![Test image](https://myoctocat.com/assets/images/base-octocat.svg)
+
