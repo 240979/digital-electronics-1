@@ -1,5 +1,6 @@
 # Lab 2: Roman Szymutko
 ## Truth table
+Truth table for 2-bit Identity comparator 
    | **Dec. equivalent** | **B[1:0]** | **A[1:0]** | **B > A** | **B == A** | **B < A** |
    | --- | --- | --- | --- | --- |
    | 00 | 0 0 | 0 0 | 0 | 1 | 0 |
