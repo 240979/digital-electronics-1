@@ -1,6 +1,6 @@
 # Lab 3: INSERT_YOUR_FIRSTNAME INSERT_YOUR_LASTNAME
 ### Schematic for LEDs and switches
-![Schematic](img/schematics.png)
+![Schematic](img/schematics.png) <br />
 Source: https://github.com/tomas-fryza/digital-electronics-1/blob/master/docs/nexys-a7-sch.pdf
 ### Three-bit wide 4-to-1 multiplexer
 1. Listing of VHDL architecture from source file `mux_3bit_4to1.vhd`. Always use syntax highlighting, meaningful comments, and follow VHDL guidelines:
