@@ -21,6 +21,7 @@
    | F | 1111 | 0 | 1 | 1 | 1 | 0 | 0 | 0 |
 
    ![Schematic](img/schematic.png)
+	</br>
    Source: https://github.com/tomas-fryza/digital-electronics-1/blob/master/docs/nexys-a7-sch.pdf
 
 ### LED(7:4) indicators
