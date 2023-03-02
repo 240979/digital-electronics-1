@@ -7,9 +7,9 @@
    | 1 | 0001 | 1 | 0 | 0 | 1 | 1 | 1 | 1 |
    | 2 | 0010 | 0 | 0 | 1 | 0 | 0 | 1 | 0 |
    | 3 | 0011 | 0 | 0 | 0 | 0 | 1 | 1 | 0 |
-   | 4 | 0100 | 1 | 0 | 0 | 1 | 1 | 0 | 1 |
-   | 5 | 0101 | 0 | 1 | 0 | 0 | 0 | 0 | 0 |
-   | 6 | 0110 | 0 | 0 | 0 | 1 | 1 | 1 | 1 |
+   | 4 | 0100 | 1 | 0 | 0 | 1 | 1 | 0 | 0 |
+   | 5 | 0101 | 0 | 1 | 0 | 0 | 1 | 0 | 0 |
+   | 6 | 0110 | 0 | 1 | 0 | 0 | 0 | 0 | 0 |
    | 7 | 0111 | 0 | 0 | 0 | 1 | 1 | 1 | 1 |
    | 8 | 1000 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
    | 9 | 1001 | 0 | 0 | 0 | 0 | 1 | 0 | 0 |
@@ -68,4 +68,4 @@
 
 3. Screenshot with simulated time waveforms for LED(7:4). Always display all inputs and outputs (display the inputs at the top of the image, the outputs below them) at the appropriate time scale!
 
-   ![your figure]()
+   ![simulation](img/sim.png)
