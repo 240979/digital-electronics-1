@@ -6,7 +6,6 @@
  | ↑ | 0 | 1 | 0 | Q(n+1) has always same level as D when enabled by CLK edge |
  | ↑ | 1 | 0 | 1 | Q(n+1) has always same level as D when enabled by CLK edge |
  | ↑ | 1 | 1 | 1 | Q(n+1) has always same level as D when enabled by CLK edge |
- <br>
  ![characteristic equation for D](img/d-char-eq.png)
 
 
