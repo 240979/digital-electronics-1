@@ -19,10 +19,16 @@
  | ↑ | 1 | 0 | 1 | 1 | J - Jump->1 |
  | ↑ | 1 | 1 | 0 | 1 | Toggle |
  | ↑ | 1 | 1 | 1 | 0 | Toggle |
-
  ![characteristic equation for JK](img/jk-char-eq.png)
  </br>
-
+ | **CLK** | **T** | **Q(n)** | **Q(n+1)** | **Comment** |
+ | :-: | :-: | :-: | :-: | :-: |
+ | ↑ | 0 | 0 | 0 | Memory |
+ | ↑ | 0 | 1 | 1 | Memory |
+ | ↑ | 1 | 0 | 1 | Toggle |
+ | ↑ | 1 | 1 | 0 | Toggle |
+ ![characteristic equation for T](img/t-char-eq.png)
+ </br>
 ### D & T Flip-flops
 
 1. Screenshot with simulated time waveforms. Try to simulate both D- and T-type flip-flops in a single testbench with a maximum duration of 350 ns, including reset. Always display all inputs and outputs (display the inputs at the top of the image, the outputs below them) at the appropriate time scale!
