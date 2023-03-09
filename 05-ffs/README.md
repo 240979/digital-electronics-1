@@ -8,7 +8,19 @@
  | ↑ | 1 | 1 | 1 | Q(n+1) has always same level as D when enabled by CLK edge |
  
  ![characteristic equation for D](img/d-char-eq.png)
-
+ </br>
+ | **CLK** | **J** | **K** | **Q(n)** | **Q(n+1)** | **Comment** |
+ | :-:     | :-:   | :-:   | :-:      | :-:        | :-:         |
+ | ↑ | 0 | 0 | 0 | 0 | Memory |
+ | ↑ | 0 | 0 | 1 | 1 | Memory |
+ | ↑ | 0 | 1 | 0 | 0 | K - Kill->0 |
+ | ↑ | 0 | 1 | 1 | 0 | K - Kill->0 |
+ | ↑ | 1 | 0 | 0 | 1 | J - Jump->1 |
+ | ↑ | 1 | 0 | 1 | 1 | J - Jump->1 |
+ | ↑ | 1 | 1 | 0 | 1 | Toggle |
+ | ↑ | 1 | 1 | 1 | 0 | Toggle |
+ ![characteristic equation for JK](img/jk-char-eq.png)
+ </br>
 
 ### D & T Flip-flops
 
