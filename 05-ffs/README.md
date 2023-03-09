@@ -19,6 +19,7 @@
  | ↑ | 1 | 0 | 1 | 1 | J - Jump->1 |
  | ↑ | 1 | 1 | 0 | 1 | Toggle |
  | ↑ | 1 | 1 | 1 | 0 | Toggle |
+
  ![characteristic equation for JK](img/jk-char-eq.png)
  </br>
 
