@@ -2,6 +2,7 @@
 ### Pre-lab preparation
  ![Buttons schematic](img/btns.png)
  ![Equations](img/eq.png)
+ Source: https://github.com/tomas-fryza/digital-electronics-1/blob/master/docs/nexys-a7-sch.pdf
  </br>
  | **Time interval** | **n** | **n in hex** | **n in binary**|
  | :-: | :-: | :-: | :-: |
