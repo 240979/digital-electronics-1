@@ -1,9 +1,9 @@
 # Lab 6: Roman Szymutko
 ### Pre-lab preparation
  ![Buttons schematic](img/btns.png)
- ![Equations](img/eq.png)
  </br>
  Source: https://github.com/tomas-fryza/digital-electronics-1/blob/master/docs/nexys-a7-sch.pdf
+ ![Equations](img/eq.png)
  </br>
  | **Time interval** | **n** | **n in hex** | **n in binary**|
  | :-: | :-: | :-: | :-: |
