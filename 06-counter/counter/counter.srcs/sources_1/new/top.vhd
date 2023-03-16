@@ -35,7 +35,7 @@ entity top is
     Port
     (
         CLK100MHZ : in STD_LOGIC;
-        SW : in STD_LOGIC;
+        SW : in STD_LOGIC_VECTOR (1 downto 0);
         CA : out STD_LOGIC;
         CB : out STD_LOGIC;
         CC : out STD_LOGIC;
@@ -95,7 +95,7 @@ begin
      )
      port map
      (
-         cnt_up => SW,
+         cnt_up => SW(0),
          clk => CLK100MHZ,
          rst => BTNC,
          en => sig_en_250ms,
@@ -111,7 +111,7 @@ begin
      )
      port map
      (
-         cnt_up => SW,
+         cnt_up => SW(1),
          clk => CLK100MHZ,
          rst => BTNC,
          en => sig_en_10ms,
