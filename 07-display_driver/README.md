@@ -1,4 +1,8 @@
 # Lab 7: Roman Szymutko
+### Pre-Lab preparation
+   ![Schematic](img/schematic.png)
+	</br>
+   Source: https://github.com/tomas-fryza/digital-electronics-1/blob/master/docs/nexys-a7-sch.pdf
 
 ### Display driver
 
