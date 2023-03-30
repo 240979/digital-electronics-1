@@ -5,8 +5,8 @@
    Source: https://github.com/tomas-fryza/digital-electronics-1/blob/master/docs/nexys-a7-sch.pdf
 | RGB LED | A7 pins | R | Y | G |
 | --- | --- | --- | --- | --- |
-| LD16 | N15, M16, R12 | 1, 0, 0 | 1, 1, 0 | 0, 1, 0 |
-| LD17 | G14, R11, N16 | 1, 0, 0 | 1, 1, 0 | 0, 1, 0 |
+| LD16 | N15, M16, R12 | `1, 0, 0` | `1, 1, 0` | `0, 1, 0` |
+| LD17 | G14, R11, N16 | `1, 0, 0` | `1, 1, 0` | `0, 1, 0` |
 ### Traffic light controller
 
 1. Listing of VHDL code of the completed process `p_traffic_fsm`. Always use syntax highlighting, meaningful comments, and follow VHDL guidelines:
