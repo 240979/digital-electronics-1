@@ -33,6 +33,8 @@ entity tlc is
   (
     clk   : in    std_logic;                    --! Main clock
     rst   : in    std_logic;                    --! High-active synchronous reset
+    speedBtnWEST : in std_logic; 
+    speedBtnSOUTH : in std_logic; 
     south : out   std_logic_vector(2 downto 0); --! Traffic light for "south" direction
     west  : out   std_logic_vector(2 downto 0)  --! Traffic light for "west" direction
   );
@@ -119,8 +121,14 @@ begin
 
           when WEST_STOP =>
             -- Count to 2 secs
-            if (sig_cnt < c_DELAY_2SEC) then
+            if (sig_cnt < c_DELAY_2SEC) 
+            then
+              if(speedBtnWEST = '1' AND speedBtnSOUTH = '0')
+              then
+              sig_state <= WEST_GO;
+              else
               sig_cnt <= sig_cnt + 1;
+              end if;
             else
               -- Move to the next state
               sig_state <= WEST_GO;
@@ -142,7 +150,12 @@ begin
           when WEST_WAIT =>
                 if (sig_cnt < c_DELAY_1SEC) 
                 then
-                      sig_cnt <= sig_cnt + 1;
+                  if(speedBtnWEST = '1' AND speedBtnSOUTH = '0')
+                  then
+                    sig_state <= WEST_GO;
+                  else
+                    sig_cnt <= sig_cnt + 1;
+                  end if;
                 else
                       -- Move to the next state
                       sig_state <= SOUTH_STOP;
@@ -152,7 +165,12 @@ begin
          when SOUTH_STOP =>
                   if (sig_cnt < c_DELAY_2SEC) 
                   then
-                       sig_cnt <= sig_cnt + 1;
+                      if(speedBtnWEST = '0' AND speedBtnSOUTH = '1')
+                      then
+                        sig_state <= SOUTH_GO;
+                      else
+                        sig_cnt <= sig_cnt + 1;
+                      end if;
                   else
                       -- Move to the next state
                       sig_state <= SOUTH_GO;
@@ -173,7 +191,12 @@ begin
           when SOUTH_WAIT =>
                   if (sig_cnt < c_DELAY_1SEC) 
                   then
-                       sig_cnt <= sig_cnt + 1;
+                      if(speedBtnWEST = '0' AND speedBtnSOUTH = '1')
+                      then
+                        sig_state <= SOUTH_GO;
+                      else
+                        sig_cnt <= sig_cnt + 1;
+                      end if;
                   else
                       -- Move to the next state
                       sig_state <= WEST_STOP;

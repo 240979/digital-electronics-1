@@ -36,6 +36,8 @@ entity top is
     (
         CLK100MHZ : in STD_LOGIC;
         BTNC : in STD_LOGIC;
+        BTND : in STD_LOGIC;
+        BTNR : in STD_LOGIC;
         LED16_R : out STD_LOGIC;
         LED16_G : out STD_LOGIC;
         LED16_B : out STD_LOGIC;
@@ -61,7 +63,9 @@ begin
       west(2)  => LED17_R,
       west(1) => LED17_G,
       west(0) => LED17_B,
-      rst      => BTNC
+      rst      => BTNC,
+      speedBtnWEST => BTNR,
+      speedBtnSOUTH => BTND
     );
 
 end architecture behavioral;
