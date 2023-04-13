@@ -97,10 +97,10 @@ begin
  )
  port map
  (
-    cnt_preload(4) => SW(4),
-    cnt_preload(5) => SW(5),
-    cnt_preload(6) => SW(6),
-    cnt_preload(7) => SW(7),
+    cnt_preload(0) => SW(4),
+    cnt_preload(1) => SW(5),
+    cnt_preload(2) => SW(6),
+    cnt_preload(3) => SW(7),
     clk => CLK100MHZ,   --: in    std_logic; --! Main clock
     rst => sig_rst_1,    --: in    std_logic; --! Synchronous reset
     en => sig_en,     --: in    std_logic; --! Enable input
