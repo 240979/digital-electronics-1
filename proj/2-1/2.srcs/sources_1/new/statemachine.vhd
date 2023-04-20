@@ -79,7 +79,7 @@ begin
       -- 1   @ 10 ns
       -- 25000000 @ 250 ms
       -- 100000000 @ 1 s
-      g_MAX => 1
+      g_MAX => 100000000
     )
     port map 
     (
@@ -105,16 +105,19 @@ begin
                 else
                     sig_state <= PAUSE;
                     sig_cnt_run <= count_ones(set_run)*10;
-                    sig_cnt_round <= sig_cnt_round - 1;
+                    if(sig_cnt_Round > 0) then
+                        sig_cnt_round <= sig_cnt_round - 1;
+                    else
+                        sig_state <= FINISH;
+                    end if;
                 end if;
             when PAUSE =>
             if (sig_cnt_pause > 0)
                 then
                     sig_cnt_pause <= sig_cnt_pause - 1;
                 else
-                    sig_state <= PAUSE;
+                    sig_state <= RUN;
                     sig_cnt_pause <= count_ones(set_pause)*10;
-                    sig_cnt_round <= sig_cnt_round - 1;
                 end if;
             when SET => 
              sig_cnt_round <= unsigned(set_round);
