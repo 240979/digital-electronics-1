@@ -58,7 +58,7 @@ uut_state : entity work.statemachine
 p_clk_gen : process is
   begin
 
-    while now < 750 ns loop             -- 75 periods of 100MHz clock
+    while now < 9990 ns loop             -- 75 periods of 100MHz clock
 
       sig_clk_100mhz <= '0';
       wait for c_CLK_100MHZ_PERIOD / 2;
@@ -93,9 +93,9 @@ p_stimulus : process is
   begin
 
     report "Stimulus process started";
-    sig_set_run <= "000111";
+    sig_set_run <= "000011";
     sig_set_pause <= "000111";
-    sig_set_round <= "0111";
+    sig_set_round <= "0010";
     report "Stimulus process finished";
     wait;
 
