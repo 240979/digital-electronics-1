@@ -23,21 +23,25 @@ Zadávání hodnot času pro cvičení a pro pauzu je provedeno součtem logick�
 
 
 ## Hardware description of demo application
-
+![image](img/schematic_visio.jpg)
+![image](img/schematic_vivado.jpg)
 Insert descriptive text and schematic(s) of your implementation.
 
 ## Software description
 
 Put flowchats/state diagrams of your algorithm(s) and direct links to source/testbench files in `src` and `sim` folders. 
-
+![image](img/state_dia.png)
 ### Component(s) simulation
 
 Write descriptive text and simulation screenshots of your components.
-
+![image](img/sim_bcd.png)
+![image](img/sim_states.png)
+![image](img/sim_state_pause.png)
+![image](img/sim_state_run.png)
 ## Instructions
 
 Write an instruction manual for your application, including photos or a link to a video.
-
+![image](img/photo.jpg)
 ## References
 
 1. Put here the literature references you used.
