@@ -20,7 +20,7 @@ Ve stavu "SET" stavu se nastaví všechny údaje, jako je čas na cvičení, ča
 
 Celý cyklus se opakuje podle toho, kolik bylo nastaveno kol ve stavu "SET". Po každém dokončení stavu "PAUSE" se odečte jedno kolo. Až se dokončí všechna kola, přechází automat do stavu "FINISH".
 
-Zadávání hodnot času pro cvičení a pauzu je provedeno pomocí switchů. V modulu "statemachine" je implementovaná funkce, která zjistí počet aktivních switchů a vrací tuto hodnotu jako datový typ integer. Každá jednička (aktivní spínač/switch) pak představuje 10 sekund časového intervalu. Časový údaj je převáděn během výstupního procesu do formátu std_logic_vector kvůli dalšímu zpracování BCD převodníkem. Počet kol je zadáván přímo v binárním tvaru (std_logic_vector) pomocí zbývajících switchů a stejně jako časové konstanty je pak předán BCD převodníku.
+Zadávání hodnot času pro cvičení a pauzu je provedeno pomocí switchů. V modulu "statemachine" je implementovaná funkce, která zjistí počet aktivních switchů a vrací tuto hodnotu jako datový typ integer. Každá jednička (aktivní spínač/switch) pak představuje 10 sekund časového intervalu. Časový údaj je převáděn během výstupního procesu do formátu std_logic_vector kvůli dalšímu zpracování BCD převodníkem. Počet kol je zadáván přímo v binárním tvaru (std_logic_vector) pomocí zbývajících switchů a stejně jako časové údaje je pak předán BCD převodníku.
 
 
 Modul "bit_to_BCD" využívá stavový automat k implementaci převodu. Stavový automat má tři stavy: start, shift a done. Ve stavu "start" je binární vstupní číslo načteno do binárního registru a BCD výstupní registr je nastaven na nulu. V stavu shift se binární číslo posune o jeden bit doleva a BCD výstup se aktualizuje, aby odrážel nové binární číslo. Tento proces se opakuje N-krát, kde N je počet bitů v binárním vstupním čísle. V stavu "done" je převod dokončen a stavový automat se vrací do stavu "start".
@@ -32,7 +32,12 @@ Následně všechny výstupy z "bit_to_BCD" přivedeny na vstup "driver_7seg_4di
 
 
 ## Hardware description of demo application
-Princip obvodu: Vstupem obvodu jsou switche a talčitko. Tento vstup je zpracován modulem "statemachine". Ze "statemachine" jsou poslány signály "sig_round" do modulu "bcd_convertor1" a "sig_output" do "bcd_converter0". Zde se provede převod a výstupy se předají pomocí signálů repezentující desítky a jednotky jednotlivých čísel do ovladače pro 7seg. Vstupy "data0" a "data1" ovladače využívá časovač a "data2" a "data3" počet kol. Výstupem pak jsou 4 7segmentové displeje.
+Popis schématu: 
+Vstupem obvodu jsou switche a tlačítko. Tento vstup je zpracován modulem "statemachine". 
+Ze "statemachine" jsou poslány signály "sig_round" do modulu "bcd_convertor1" a "sig_output" do "bcd_converter0". 
+Zde se provede převod a výstupy se předají pomocí signálů repezentující desítky a jednotky jednotlivých čísel do ovladače pro 7segmentu. 
+Vstupy "data0" a "data1" ovladače využívá časovač a "data2" a "data3" počet kol. 
+Výstupem jsou 4 7segmentové displeje.
 Schéma obvodu:
 ![image](img/schematic_visio.jpg)
 Schéma obvodu vygenerované ve vývojovém prostředí Vivado:
