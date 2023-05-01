@@ -41,6 +41,12 @@ Insert descriptive text and schematic(s) of your implementation.
 ## Software description
 
 Put flowchats/state diagrams of your algorithm(s) and direct links to source/testbench files in `src` and `sim` folders. 
+Odkaz na simulaci stavového automatu: 2/2.srcs/sim_1/new/tb.vhd
+Odkaz na simulaci převodníku binárního kódu na BCD: project_final/project_final.srcs/sim_1/new/tb_bin_to_BCD.vhd
+Odkaz na zdrojový kód stavového automatu: project_final/project_final.srcs/sources_1/new/statemachine.vhd
+Odkaz na zdrojový kód převodníku binárního kódu na BCD: project_final/project_final.srcs/sources_1/new/bin_to_BCD.vhd
+Odkaz na zdrojový kód 7-segmentového ovladače: project_final/project_final.srcs/sources_1/new/driver_7seg_4digits_for_timer.vhd
+
 ![image](img/state_dia.png)
 ### Component(s) simulation
 
@@ -61,7 +67,6 @@ při zadaní resetu je stav v "SET"
 ![image](img/sim_state_run.png)
 ## Instructions
 
-Write an instruction manual for your application, including photos or a link to a video.
 
 1.Press and hold reset button 
 2.Set time and rounds on switches
