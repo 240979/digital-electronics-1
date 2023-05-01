@@ -59,10 +59,10 @@ Schéma obvodu vygenerované ve vývojovém prostředí Vivado:
 ![image](img/state_dia.png)
 ### Component(s) simulation
 
-Na obrázku níže lze vidět situaci, kdy na vstupu převodníku se objeví binární číslo "001010", což je v desitkové soustavě 10. A na výstup se pak dostanou hodnoty bcd1 = 1 a bcd0 = 0. Když je použijeme jako jednotky a desítky, vytvoří číslo 10.
+Na obrázku níže lze vidět situaci, kdy na vstupu převodníku se objeví binární číslo "001010", což je v desítkové soustavě 10. Na výstup se pak dostanou hodnoty bcd1 = 1 a bcd0 = 0. Když je použijeme jako jednotky a desítky, vytvoří číslo 10.
 Další vstup je "000010", což je v desitkové soustavě 2. Pomocí vnitřních operací se na výstup dostanou hodnoty bcd1 = 0 a bcd0 = 2. Když z nich opět sestavíme dvouciferné číslo, vznikne hodnota 02.
 Obdobně se obvod zachoval i pro vstup "000011", což je opět jednociferné číslo, tentokrát však s decimální hodnotou 3.
-Vstup "101010", viditelný na simulaci jako "0x2A", což je v desitkové soustavě 42, způsobí na výstupu hotnoty bcd1 = 4 a bcd0 = 2.
+Vstup "101010", viditelný na simulaci jako "0x2A" a v desítkové soustavě 42, způsobí na výstupu hotnoty bcd1 = 4 a bcd0 = 2.
 ![image](img/sim_bcd.png)
 Na dalších obrázcích je simulace statového automatu. První obrázek ukazuje, jak se mění během chodu stavy. Na vstupu byla nastavena 2 kola, 20s cvičení a 30s přestávky.
 ![image](img/sim_states.png)
