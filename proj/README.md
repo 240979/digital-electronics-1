@@ -71,8 +71,6 @@ Zde můžeme vidět odečítání hodnoty vnitřního čítače stavu "PAUSE":
 Zde můžeme vidět odečítání hodnoty vnitřního čítače stavu "RUN":
 ![image](img/sim_state_run.png)
 ## Instructions
-
-
 1. Press and hold reset button 
 </br>
 2. Set time and rounds on switches
