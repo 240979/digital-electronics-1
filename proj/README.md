@@ -16,7 +16,7 @@
 
 Cílem projektu bylo vytvořit časovač s funkcemi nastavení času pro cvičení, pauzu a nastavení počtu kol. Celý časovač byl navržen jako stavový automat, který se přepíná mezi jednotlivými stavy SET=>RUN=>PAUSE=>(RUN<->PAUSE podle toho, kolik je nastaveno kol)=>FINISH. Díky modulu "clock_enable", který byl implementován s časovou konstantou 100000000, pracují vnitřní čítače s periodou 1s.
 
-Ve stavu "SET" stavu se nastaví všechny údaje, jako je čas na cvičení, čas na pauzu a počet kol. Tyto údaje se nastavují současně za přídržením resetu nebo před stiskem resetu, protože automat stiskem talčítka vstupuje do stavu "SET", ve kterém zapisuje vstupní parametry do vnitřních proměnných. Po uvolnění tlačítka resetu přechází časovač do stavu "RUN" a začne se odečítat nastavená hodnota. Poté, když podteče vnitřní čítač, přechází automat do stavu "PAUSE" a podle nastavené hodnoty se čas začíná odečítat stejným způsobem jako ve stavu "RUN".
+Ve stavu "SET" stavu se nastaví všechny údaje, jako je čas na cvičení, čas na pauzu a počet kol. Tyto údaje se nastavují současně za přídržením resetu nebo před stiskem resetu, protože automat stiskem talčítka vstupuje do stavu "SET", ve kterém zapisuje vstupní parametry do vnitřních proměnných. Po uvolnění tlačítka resetu přechází časovač do stavu "RUN" a začne se odečítat nastavená hodnota. Poté, když podteče vnitřní čítač, přechází automat do stavu "PAUSE" a od nastavené hodnoty se začíná odečítat stejným způsobem jako ve stavu "RUN".
 
 Celý cyklus se opakuje podle toho, kolik bylo nastaveno kol ve stavu "SET". Po každém dokončení stavu "PAUSE" se odečte jedno kolo. Až se dokončí všechna kola, přechází automat do stavu "FINISH".
 
