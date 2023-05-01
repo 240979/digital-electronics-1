@@ -14,16 +14,20 @@
 
 ## Theoretical description and explanation
 
-Cílem projektu bylo vytvořit časovač s funkcemi nastavení času pro cvičení, pauzu a nastavení počtu kol. Celý časovač byl navržen jako stavový automat, který se přepíná mezi jednotlivými stavy SET=>RUN=>PAUSE=>(RUN<->PAUSE podle toho, kolik je nastaveno kol)=>FINISH. Díky modulu "clock_enable", který byl implementován s časovou konstantou 100000000, pracují vnitřní čítače s periodou 1s.
+Cílem projektu bylo vytvořit časovač s funkcemi nastavení času pro cvičení, pauzu a nastavení počtu kol. Celý časovač byl navržen jako stavový automat, 
+který přepíná mezi jednotlivými stavy SET=>RUN=>PAUSE=>(RUN<->PAUSE podle toho, kolik je nastaveno kol)=>FINISH. 
+Díky modulu "clock_enable", který byl implementován s časovou konstantou 100000000, pracují vnitřní čítače s periodou 1s.
 
-Ve stavu "SET" stavu se nastaví všechny údaje, jako je čas na cvičení, čas na pauzu a počet kol. Tyto údaje se nastavují současně za přídržením resetu nebo před stiskem resetu, protože automat stiskem talčítka vstupuje do stavu "SET", ve kterém zapisuje vstupní parametry do vnitřních proměnných. Po uvolnění tlačítka resetu přechází časovač do stavu "RUN" a začne se odečítat nastavená hodnota. Poté, když podteče vnitřní čítač, přechází automat do stavu "PAUSE" a od nastavené hodnoty se začíná odečítat stejným způsobem jako ve stavu "RUN".
+Ve stavu "SET" se nastaví všechny údaje, jako je doba cvičení, doba přestávky a počet kol. Tyto údaje se nastavují během přídržení resetu nebo před jeho stiskem, protože automat stiskem talčítka vstupuje do stavu "SET", 
+ve kterém zapisuje vstupní parametry do vnitřních proměnných. 
+Po uvolnění tlačítka resetu přechází časovač do stavu "RUN" a začne se odečítat nastavená hodnota. Když podteče vnitřní čítač stavu "RUN", přechází automat do stavu "PAUSE" a od nastavené hodnoty se začíná odečítat stejným způsobem jako ve stavu "RUN".
 
-Celý cyklus se opakuje podle toho, kolik bylo nastaveno kol ve stavu "SET". Po každém dokončení stavu "PAUSE" se odečte jedno kolo. Až se dokončí všechna kola, přechází automat do stavu "FINISH".
+Celý cyklus se opakuje tolikrát, kolik bylo nastaveno kol ve stavu "SET". Po každém dokončení stavu "PAUSE" se odečte jedno kolo. Až proběhnou všechna kola, přechází automat do stavu "FINISH", ze kterého lze vystoupit pouze stiskem tlačítka.
 
 Zadávání hodnot času pro cvičení a pauzu je provedeno pomocí switchů. V modulu "statemachine" je implementovaná funkce, která zjistí počet aktivních switchů a vrací tuto hodnotu jako datový typ integer. Každá jednička (aktivní spínač/switch) pak představuje 10 sekund časového intervalu. Časový údaj je převáděn během výstupního procesu do formátu std_logic_vector kvůli dalšímu zpracování BCD převodníkem. Počet kol je zadáván přímo v binárním tvaru (std_logic_vector) pomocí zbývajících switchů a stejně jako časové údaje je pak předán BCD převodníku.
 
 
-Modul "bit_to_BCD" využívá stavový automat k implementaci převodu. Stavový automat má tři stavy: start, shift a done. Ve stavu "start" je binární vstupní číslo načteno do binárního registru a BCD výstupní registr je nastaven na nulu. V stavu shift se binární číslo posune o jeden bit doleva a BCD výstup se aktualizuje, aby odrážel nové binární číslo. Tento proces se opakuje N-krát, kde N je počet bitů v binárním vstupním čísle. V stavu "done" je převod dokončen a stavový automat se vrací do stavu "start".
+Modul "bit_to_BCD" využívá stavový automat k implementaci převodu. Stavový automat má tři stavy: "start", "shift" a "done". Ve stavu "start" je binární vstupní číslo načteno do binárního registru a BCD výstupní registr je nastaven na nulu. Ve stavu "shift" se binární číslo posune o jeden bit doleva a BCD výstup se aktualizuje, aby zobrazil nové binární číslo. Tento proces se opakuje N-krát, kde N je počet bitů v binárním vstupním čísle. Ve stavu "done" je převod dokončen a stavový automat se vrací do stavu "start".
 
 Převod z binárního kódu na BCD formát se provádí pomocí sekvence operací na výstupu BCD. Výstup BCD je rozdělen na dva čtyřbitové vektory, bcd0 a bcd1. V prvním kroku převodu se hodnota každého BCD čísla nastaví na nulu. Ve druhém kroku se binární číslo převede do BCD formátu pomocí sekvence operací sčítání a odčítání. Nakonec je BCD výstup upraven tak, aby se zajistilo, že každé číslo je v rozsahu 0 až 9.
 
