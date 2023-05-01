@@ -72,14 +72,12 @@ Zde můžeme vidět odečítání hodnoty vnitřního čítače stavu "RUN":
 ![image](img/sim_state_run.png)
 ## Instructions
 1. Press and hold reset button 
-</br>
 2. Set time and rounds on switches
-</br>
 3. Release button
-</br>
 4. The timer has started and you can start working out
 
 ![image](img/photo.jpg)
 ## References
 [Funkce pro nalezení jedničkových bitů čísla](https://www.edaboard.com/threads/how-to-count-number-of-1s-in-std_logic_vector-vhdl.183777/)
+</br>
 [Převodník binárního kódu na BCD](https://allaboutfpga.com/vhdl-code-for-binary-to-bcd-converter/)
