@@ -73,13 +73,13 @@ Zde můžeme vidět odečítání hodnoty vnitřního čítače stavu "RUN":
 ## Instructions
 
 
-1.Press and hold reset button 
+1. Press and hold reset button 
 </br>
-2.Set time and rounds on switches
+2. Set time and rounds on switches
 </br>
-3.Release button
+3. Release button
 </br>
-4.The timer has started and you can start working out
+4. The timer has started and you can start working out
 
 ![image](img/photo.jpg)
 ## References
