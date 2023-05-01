@@ -33,9 +33,9 @@ Následně všechny výstupy z "bit_to_BCD" přivedeny na vstup "driver_7seg_4di
 
 ## Hardware description of demo application
 Princip obvodu: Vstupem obvodu jsou switche a talčitko. Tento vstup je zpracován modulem "statemachine". Ze "statemachine" jsou poslány signály "sig_round" do modulu "bcd_convertor1" a "sig_output" do "bcd_converter0". Zde se provede převod a výstupy se předají pomocí signálů repezentující desítky a jednotky jednotlivých čísel do ovladače pro 7seg. Vstupy "data0" a "data1" ovladače využívá časovač a "data2" a "data3" počet kol. Výstupem pak jsou 4 7segmentové displeje.
-Schéma obvoddu:
+Schéma obvodu:
 ![image](img/schematic_visio.jpg)
-Schéma obvoddu vygenerovaná ve vývojovém prostředí Vivado:
+Schéma obvodu vygenerované ve vývojovém prostředí Vivado:
 ![image](img/schematic_vivado.jpg)
 
 ## Software description
