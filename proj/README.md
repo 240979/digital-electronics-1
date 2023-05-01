@@ -14,34 +14,34 @@
 
 ## Theoretical description and explanation
 
-Projekt, jehož cílem bylo vytvořit časovač s funkcemi nastavení času pro cvičení, pauzu a nastavení počtu kol. Celý časovač byl navržen jako stavový automat, který se přepíná mezi jednotlivými stavy SET=>RUN=>PAUSE=>(RUN<->PAUSE podle toho, kolik je nastaveno kol)=>FINISH. Díky "clocku_enable", který byl implementován, se na každou vzestupnou hranu počítalo jako jedna sekunda.
+Cílem projektu bylo vytvořit časovač s funkcemi nastavení času pro cvičení, pauzu a nastavení počtu kol. Celý časovač byl navržen jako stavový automat, který se přepíná mezi jednotlivými stavy SET=>RUN=>PAUSE=>(RUN<->PAUSE podle toho, kolik je nastaveno kol)=>FINISH. Díky modulu "clock_enable", který byl implementován s časovou konstantou 100000000, pracují vnitřní čítače s periodou 1s.
 
-V "SET" stavu se nastaví všechny údaje, jako je čas na cvičení, čas na pauzu a počet kol. Tyto údaje se nastavují současně podržením resetu, protože celý stavový automat se resetuje a začíná od začátku. Po puštění tlačítka resetu přechází časovač do stavu "RUN" a začne se odečítat nastavená hodnota, díky "clocku_enable", který byl implementován a na každou náběžnou hranu odečítal jednu sekundu. Znamenaje, že každá náběžná hrana je 1 sekunda. Poté, když časový údaj spadne na "0", přechází stav na "PAUSE" a podle nastavené hodnoty se čas začíná odečítat stejným způsobem jako v "RUN" stavu.
+Ve stavu "SET" stavu se nastaví všechny údaje, jako je čas na cvičení, čas na pauzu a počet kol. Tyto údaje se nastavují současně za přídržením resetu nebo před stiskem resetu, protože automat tak vstupuje do stavu "SET", ve kterém zapisuje vstupní parametry do vnitřních proměnných. Po puštění tlačítka resetu přechází časovač do stavu "RUN" a začne se odečítat nastavená hodnota. Poté, když podteče vnitřní čítač, přechází automat do stavu "PAUSE" a podle nastavené hodnoty se čas začíná odečítat stejným způsobem jako ve stavu "RUN".
 
-Celý cyklus se opakuje podle toho, kolik bylo nastaveno kol v "SET" stavu. Po každém dokončení stavu "PAUSE" se odečte jedno kolo. Poté, když všechna kola doběhnou, přechází stavový automat ze stavu "PAUSE" do stavu "FINISH".
+Celý cyklus se opakuje podle toho, kolik bylo nastaveno kol ve stavu "SET". Po každém dokončení stavu "PAUSE" se odečte jedno kolo. Až se dokončí všechna kola, přechází automat do stavu "FINISH".
 
-Zadávání hodnot času pro cvičení a pauzu je provedeno součtem logických jedniček, což znamená, že bylo použito celé číslo (Integer) namísto bitů. To znamená, že každá jednička (spínač) reprezentuje 10 sekund k navýšení času. Poté takové číslo bylo převedeno do binární čísla pro bcd convertor. Stejně tak byl round v binární čísle a byl převeden na BCD convertor.
+Zadávání hodnot času pro cvičení a pauzu je provedeno pomocí switchů. V modulu "statemachine" je implementovaná funkce, která zjistí počet aktivních switchů a vrací tuto hodnotu jako datový typ integer. Každá jednička (aktivní spínač/switch) pak představuje 10 sekund časového intervalu. Čaosvá konstanta je převedena do formátu std_logic_vector pro BCD převodník. Počet kol je zadáván přímo v binárním tvaru (std_logic_vector) pomocí zbývajících switchů a stejně jako časové konstanty je pak předán BCD převodníku.
 
 
-Modul "bit_to_BCD" využívá stavový automat k implementaci převodu. Stavový automat má tři stavy: start, shift a done. V startovním stavu je binární vstupní číslo načteno do binárního registru a BCD výstupní registr je nastaven na nulu. V stavu shift se binární číslo posune o jeden bit doleva a BCD výstup se aktualizuje, aby odrážel nové binární číslo. Tento proces se opakuje N-krát, kde N je počet bitů v binárním vstupním čísle. V stavu done je převod dokončen a stavový automat se vrátí do startovního stavu.
+Modul "bit_to_BCD" využívá stavový automat k implementaci převodu. Stavový automat má tři stavy: start, shift a done. Ve stavu "start" je binární vstupní číslo načteno do binárního registru a BCD výstupní registr je nastaven na nulu. V stavu shift se binární číslo posune o jeden bit doleva a BCD výstup se aktualizuje, aby odrážel nové binární číslo. Tento proces se opakuje N-krát, kde N je počet bitů v binárním vstupním čísle. V stavu "done" je převod dokončen a stavový automat se vrací do stavu "start".
 
-Převod z binárního na BCD formát se provádí pomocí sekvence operací na výstupu BCD. Výstup BCD je rozdělen na dvě čtyřbitová vektory, bcd0 a bcd1. V prvním kroku převodu se hodnota každého BCD čísla nastaví na nulu. Ve druhém kroku se binární číslo převede do BCD formátu pomocí sekvence operací sčítání a odčítání. Nakonec je BCD výstup upraven tak, aby se zajistilo, že každé číslo je v rozsahu 0 až 9.
+Převod z binárního kódu na BCD formát se provádí pomocí sekvence operací na výstupu BCD. Výstup BCD je rozdělen na dva čtyřbitové vektory, bcd0 a bcd1. V prvním kroku převodu se hodnota každého BCD čísla nastaví na nulu. Ve druhém kroku se binární číslo převede do BCD formátu pomocí sekvence operací sčítání a odčítání. Nakonec je BCD výstup upraven tak, aby se zajistilo, že každé číslo je v rozsahu 0 až 9.
 
-Následně všechny výstupy z "bit_to_BCD" přivedeny na vstup "driver_7seg_4digits_for_time". A poté z driveru přivedeno na vstup "hex_7seg", tak aby čislo mohlo být zobrazováno.
+Následně všechny výstupy z "bit_to_BCD" přivedeny na vstup "driver_7seg_4digits_for_time", který využívá převodník binárního kódu na 7segmentový display a časové multiplexování dat na jednotlivé displeje.
 
 
 
 ## Hardware description of demo application
-Celá schematika, jak celý program/přístroj funguje. Ze statemachine poslány výstupy -> sig_round do bcd_convertor1 a -> sig_output do bcd_converter0. Provede se převod a výstupy přejdou do driveru pro 7seg. data0 a data1 - reprezentují timer; data2 a data3 - reprezentují počet kol. Násldně zabalené do topu a výstupem jsou potom čtyři segmentovky. Vstup topu jsou všechny switche na nastavení hodnot, tlačítko na reset a CLOK100MHZ na clock. Vše je právě sychronizované clokem, který je přiveden stejně jako reset na každý modul topu.
+Princip obvodu: Vstupem obvodu jsou switche a talčitko. Tento vstup je zpracován modulem "statemachine". Ze "statemachine" jsou poslány signály "sig_round" do modulu "bcd_convertor1" a "sig_output" do "bcd_converter0". Zde se provede převod a výstupy se předají pomocí signálů repezentující desítky a jednotky jednotlivých čísel do ovladače pro 7seg. Vstupy "data0" a "data1" ovladače využívá časovač a "data2" a "data3" počet kol. Výstupem pak jsou 4 7segmentové displeje.
+Schéma obvoddu:
 ![image](img/schematic_visio.jpg)
-Schematika, jak byla vygenerovana v programu "Vivado"
+Schéma obvoddu vygenerovaná ve vývojovém prostředí Vivado:
 ![image](img/schematic_vivado.jpg)
-Insert descriptive text and schematic(s) of your implementation.
 
 ## Software description
-[Odkaz na simulaci stavového automatu](2/2.srcs/sim_1/new/tb.vhd)
+[Odkaz na testbench stavového automatu](2/2.srcs/sim_1/new/tb.vhd)
 </br>
-[Odkaz na simulaci převodníku binárníhokódu na BCD](project_final/project_final.srcs/sim_1/new/tb_bin_to_BCD.vhd)
+[Odkaz na testbench převodníku binárního kódu na BCD](project_final/project_final.srcs/sim_1/new/tb_bin_to_BCD.vhd)
 </br>
 [Odkaz na zdrojový kód stavového automatu](project_final/project_final.srcs/sources_1/new/statemachine.vhd)
 </br>
@@ -54,27 +54,23 @@ Insert descriptive text and schematic(s) of your implementation.
 ![image](img/state_dia.png)
 ### Component(s) simulation
 
-Na obrázku níže je krásně vidět, když binarním vstupem přivedem čislo například "001010" což je v desitkové soustavě 10, tak je krásně vidět, jak přes shiftovaní se na výstup bcd1 = 1 a bcd0 = 0 a když je dáme vedle sebe -> vytváří to  číslo 10.
-
-Pro další ukázku:
-"000010" což je v desitkové soustavě 2, tak je krásně vidět, jak přes shiftovaní se na výstup bcd1 = 0 a bcd0 = 2 a když je dáme vedle sebe -> vytváří to  číslo 02 - respektivě číslo 2.
-
-"011000" což je v desitkové soustavě 24, tak je krásně vidět, jak přes shiftovaní se na výstup bcd1 = 2 a bcd0 = 4 a když je dáme vedle sebe -> vytváří to  číslo 24
-
-A reset restartuje modul.
+Na obrázku níže lze vidět situaci, kdy na vstupu převodníku se objeví binární číslo "001010", což je v desitkové soustavě 10. A na výstup se pak dostanou hodnoty bcd1 = 1 a bcd0 = 0. Když je použijeme jako jednotky a desítky, vytvoří číslo 10.
+Další vstup je "000010", což je v desitkové soustavě 2. Pomocí vnitřních operací se na výstup dostanou hodnoty bcd1 = 0 a bcd0 = 2. Když z nich opět sestavíme dvouciferné číslo, vznikne hodnota 02.
+Obdobně se obvod zachoval i pro vstup "000011", což je opět jednociferné číslo, tentokrát však s decimální hodnotou 3.
+Vstup "101010", viditelný na simulaci jako "0x2A", což je v desitkové soustavě 42, způsobí na výstupu hotnoty bcd1 = 4 a bcd0 = 2.
 ![image](img/sim_bcd.png)
-Je zde vidět níže na obrázku, jak se stavy automatu mění. Nastaveno 2 kola, 2 krát se opakuje, nastaveno 20 sekund času na cvičení a 30 sekund na pauzu. viz. Obrazky níže.
-
-při zadaní resetu je stav v "SET"
+Na dalších obrázcích je simulace statového automatu. První obrázek ukazuje, jak se mění během chodu stavy. Na vstupu byla nastavena 2 kola, 20s cvičení a 30s přestávky.
 ![image](img/sim_states.png)
+Zde můžeme vidět odečítání hodnoty vnitřního čítače stavu "PAUSE":
 ![image](img/sim_state_pause.png)
+Zde můžeme vidět odečítání hodnoty vnitřního čítače stavu "RUN":
 ![image](img/sim_state_run.png)
 ## Instructions
 
 
 1.Press and hold reset button 
 2.Set time and rounds on switches
-3.release button
+3.Release button
 4.The timer has started and you can start working out
 
 ![image](img/photo.jpg)
