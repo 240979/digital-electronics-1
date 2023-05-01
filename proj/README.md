@@ -39,8 +39,6 @@ Schematika, jak byla vygenerovana v programu "Vivado"
 Insert descriptive text and schematic(s) of your implementation.
 
 ## Software description
-
-Put flowchats/state diagrams of your algorithm(s) and direct links to source/testbench files in `src` and `sim` folders. 
 [Odkaz na simulaci stavového automatu](2/2.srcs/sim_1/new/tb.vhd)
 </br>
 [Odkaz na simulaci převodníku binárníhokódu na BCD](project_final/project_final.srcs/sim_1/new/tb_bin_to_BCD.vhd)
@@ -50,6 +48,8 @@ Put flowchats/state diagrams of your algorithm(s) and direct links to source/tes
 [Odkaz na zdrojový kód převodníku binárního kódu na BCD](project_final/project_final.srcs/sources_1/new/bin_to_BCD.vhd)
 </br>
 [Odkaz na zdrojový kód 7-segmentového ovladače](project_final/project_final.srcs/sources_1/new/driver_7seg_4digits_for_timer.vhd)
+</br>
+[Odkaz na zdrojový kód top modulu](project_final/project_final.srcs/sources_1/new/top.vhd)
 </br>
 ![image](img/state_dia.png)
 ### Component(s) simulation
