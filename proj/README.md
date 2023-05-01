@@ -33,7 +33,7 @@ Následně všechny výstupy z "bit_to_BCD" přivedeny na vstup "driver_7seg_4di
 
 ## Hardware description of demo application
 Popis schématu: 
-Vstupem obvodu jsou switche a tlačítko. Tento vstup je zpracován modulem "statemachine". 
+Vstupem obvodu jsou switche a tlačítko. Switche se zpracovávají v modulu "statemachine", tlačítko, fungující jako reset mají vechny moduly společné, stejně jako clock. 
 Ze "statemachine" jsou poslány signály "sig_round" do modulu "bcd_convertor1" a "sig_output" do "bcd_converter0". 
 Zde se provede převod a výstupy se předají pomocí signálů repezentující desítky a jednotky jednotlivých čísel do ovladače pro 7segmentu. 
 Vstupy "data0" a "data1" ovladače využívá časovač a "data2" a "data3" počet kol. 
