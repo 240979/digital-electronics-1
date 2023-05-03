@@ -9,7 +9,7 @@
 ### Team members
 
 * Roman Szymutko (responsible for construction of statemachine)
-* Slávek Rylich (responsible for DBC convertor)
+* Slávek Rylich (responsible for BCD convertor)
 * Matyáš Tomeš (responsible for procokol)
 
 ## Theoretical description and explanation
